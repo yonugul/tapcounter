@@ -29,7 +29,6 @@ namespace MyCounter.Core.ViewModels.Home
             Remaining = targetCount - tapCount;
             Target = targetCount;
             TapCount = tapCount;
-            Application.Current.MainPage.dis
         }
         private int _tapCount;
         public int TapCount
