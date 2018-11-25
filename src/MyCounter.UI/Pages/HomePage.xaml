@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:HomeViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:local="clr-namespace:MyCounter.UI.Pages"
+    x:Class="MyCounter.UI.Pages.HomePage"
+    xmlns:viewModels="clr-namespace:MyCounter.Core.ViewModels.Home;assembly=MyCounter.Core"
+                      Title="Main page">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Hedef : "></Label>
+                <Entry Grid.Column="1" VerticalOptions="CenterAndExpand" Text="{mvx:MvxBind Target}" Keyboard="Numeric"></Entry>
+                <Label Grid.Column="2" VerticalOptions="CenterAndExpand" Text="Kalan : "></Label>
+                <Label Grid.Column="3" VerticalOptions="CenterAndExpand" Text="{mvx:MvxBind Remaining}"></Label>
+            </Grid>
+            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                <Button Command="{mvx:MvxBind RemoveTapCommand}" Text="-" FontSize="24" BorderColor="Red" BackgroundColor="Red" HeightRequest="48" WidthRequest="48" CornerRadius="24" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                <Button Command="{mvx:MvxBind AddTapCommand}" Text="{mvx:MvxBind TapCount}" FontSize="48" BorderColor="Blue" HeightRequest="96" WidthRequest="96" CornerRadius="48" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                <Button Command="{mvx:MvxBind AddTapCommand}" Text="+" FontSize="24" BorderColor="Green" BackgroundColor="Green" HeightRequest="48" WidthRequest="48" CornerRadius="24" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <Button Command="{mvx:MvxBind ResetCommand}" Text="Sıfırla" HorizontalOptions="Fill" VerticalOptions="End"/>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{mvx:MvxBind AddTapCommand}"></TapGestureRecognizer>
+                <SwipeGestureRecognizer Command="{mvx:MvxBind RemoveTapCommand}" Direction="Left"></SwipeGestureRecognizer>
+                <SwipeGestureRecognizer Command="{mvx:MvxBind RemoveTapCommand}" Direction="Down"></SwipeGestureRecognizer>
+                <SwipeGestureRecognizer Command="{mvx:MvxBind AddTapCommand}" Direction="Right"></SwipeGestureRecognizer>
+                <SwipeGestureRecognizer Command="{mvx:MvxBind AddTapCommand}" Direction="Up"></SwipeGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>
